@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.env
+*.csv
+next_data.json
+geocoding_cache.json
+universityscope_map.html
+index.html
