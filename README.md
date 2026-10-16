@@ -17,6 +17,14 @@ The validation snapshot contains **3,146 records across 131 countries and territ
 - **Comparisons:** up to four institutions, score distributions and fitted cluster profiles.
 - **Visual report:** six reproducible charts that display directly on GitHub and in the notebook.
 
+## Featured case study: Constructor University
+
+Compare Constructor with five German peers using a documented rank-band selection rule. The report connects reproducible Python analysis with an Excel workbook and a five-slide briefing.
+
+[**Explore the benchmark**](reports/constructor-benchmark/README.md) · [**Run the benchmark in Colab**](https://colab.research.google.com/github/BlessingSK1998/UniversityScope/blob/main/reports/constructor-benchmark/Constructor_University_Benchmark.ipynb) · [Excel report](reports/constructor-benchmark/Constructor_University_Benchmark.xlsx) · [Slide deck](reports/constructor-benchmark/Constructor_University_Benchmark_Briefing.pptx)
+
+![Constructor University peer comparison](reports/constructor-benchmark/comparison.png)
+
 ## View the dashboard
 
 For immediate exploration, open the live demo above. To analyze the original dataset in Python:
