@@ -4,7 +4,7 @@
 
 A data science portfolio by [Blessing Sekeramavi](https://github.com/BlessingSK1998), connecting analytical work with international university outreach.
 
-[**Open interactive dashboard in Colab**](https://colab.research.google.com/github/BlessingSK1998/UniversityScope/blob/main/UniversityScope.ipynb) · [Notebook](UniversityScope.ipynb) · [Methods and data](docs/methodology.md)
+[**Live software demo**](https://universityscope-blessing.pearlypanda9.chatgpt.site) · [**Open interactive dashboard in Colab**](https://colab.research.google.com/github/BlessingSK1998/UniversityScope/blob/main/UniversityScope.ipynb) · [Notebook](UniversityScope.ipynb) · [Methods and data](docs/methodology.md)
 
 ![World coverage of ranked universities](assets/world-coverage.svg)
 
@@ -19,13 +19,15 @@ The validation snapshot contains **3,146 records across 131 countries and territ
 
 ## View the dashboard
 
+For immediate exploration, open the live demo above. To analyze the original dataset in Python:
+
 1. Open the Colab link above.
 2. Upload your saved `times_higher_education_rankings.csv` in Colab's Files sidebar, or let the notebook attempt source retrieval.
 3. Choose **Runtime → Run all** and scroll to the final dashboard cell.
 
 The notebook contains the project helpers and world boundaries. JavaScript libraries require CDN access. If WebGL cannot start, the dashboard uses its 2D map. Scroll inside the frame for charts, comparisons and the table.
 
-**GitHub displays the static visuals below but does not execute notebook JavaScript.** Download the generated `universityscope_dashboard.html` from Colab to open it in a browser. A hosted public dashboard is not deployed.
+**GitHub displays the static visuals below but does not execute notebook JavaScript.** Download the generated `universityscope_dashboard.html` from Colab to open it in a browser. The [live software demo](https://universityscope-blessing.pearlypanda9.chatgpt.site) uses clearly labelled fictional institutions and supports browser-local CSV import. Your file is read locally rather than uploaded; the original ranking snapshot is not bundled into the website.
 
 ## Visual findings
 
