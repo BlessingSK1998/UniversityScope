@@ -1,58 +1,99 @@
 # UniversityScope
-### Global university intelligence · interactive notebook dashboard
 
-Explore 3,146 institution records through an embedded dashboard with a **3D globe, 2D world map, filters, score comparisons and downloadable shortlists**.
+**Global university performance, geographic coverage and institutional comparison.**
 
-**[Open in Google Colab](https://colab.research.google.com/github/BlessingSK1998/UniversityScope/blob/main/UniversityScope.ipynb)** · [View notebook](UniversityScope.ipynb)
+A data science portfolio by [Blessing Sekeramavi](https://github.com/BlessingSK1998), connecting analytical work with international university outreach.
 
-Built by [Blessing Sekeramavi](https://github.com/BlessingSK1998), combining data science with international university outreach.
+[**Open interactive dashboard in Colab**](https://colab.research.google.com/github/BlessingSK1998/UniversityScope/blob/main/UniversityScope.ipynb) · [Notebook](UniversityScope.ipynb) · [Methods and data](docs/methodology.md)
 
-## See the dashboard
+![World coverage of ranked universities](assets/world-coverage.svg)
+
+## Explore the project
+
+The validation snapshot contains **3,146 records across 131 countries and territories**: 2,224 ranked institutions, 821 reporters and 101 disabled records. All records are retained. The maps show country aggregates rather than campus locations.
+
+- **Interactive maps:** rotating 3D country globe and a projected 2D map with click-to-filter controls.
+- **Institution explorer:** search, country and status filters, performance dimensions and CSV export.
+- **Comparisons:** up to four institutions, score distributions and fitted cluster profiles.
+- **Visual report:** six reproducible charts that display directly on GitHub and in the notebook.
+
+## View the dashboard
+
 1. Open the Colab link above.
-2. Select **Runtime → Run all**.
-3. Scroll to **Launch the interactive dashboard**. The dashboard displays inside the notebook; scroll within its frame for comparisons and the explorer.
+2. Upload your saved `times_higher_education_rankings.csv` in Colab's Files sidebar, or let the notebook attempt source retrieval.
+3. Choose **Runtime → Run all** and scroll to the final dashboard cell.
 
-The notebook is self-contained. Upload your existing `times_higher_education_rankings.csv` through Colab's Files sidebar to reuse it; otherwise it attempts source retrieval. Internet access is required for dependencies, map boundaries and visualization libraries.
+The notebook contains the project helpers and world boundaries. JavaScript libraries require CDN access. If WebGL cannot start, the dashboard uses its 2D map. Scroll inside the frame for charts, comparisons and the table.
 
-**GitHub disables JavaScript in notebook previews. Use Colab to interact with the dashboard.** You can also download the generated `universityscope_dashboard.html` from Colab and open it in a browser with internet access. There is no hosted public dashboard deployment yet.
+**GitHub displays the static visuals below but does not execute notebook JavaScript.** Download the generated `universityscope_dashboard.html` from Colab to open it in a browser. A hosted public dashboard is not deployed.
 
-## What's inside
-| Feature | Behaviour |
-| --- | --- |
-| 3D globe | Real country boundary polygons, heights and colours representing institution counts |
-| 2D world map | Country choropleth with counts and click-to-filter interaction |
-| Search and filters | Institution name, country/territory, ranking status and score dimension |
-| Performance analysis | Country coverage and teaching versus research scatterplot |
-| Compare | Up to four institutions with aligned component-score bars |
-| Explorer | Original ranks/bands, status and score intervals; all matches exported to CSV |
-| Clustering | Complete-case component scores; K=2–5 evaluated by silhouette, fitted labels exported |
+## Visual findings
 
-The maps aggregate institutions **by country**. They do not imply verified campus coordinates. Unresolved country codes are counted visibly. The 3D map depends on WebGL; if its libraries fail to load, the dashboard switches to the 2D view and shows an error.
+![Countries with the most ranked institutions](assets/country-coverage.svg)
 
-## Local use
+![Teaching and research relationship](assets/teaching-research.svg)
+
+Teaching and research scores have a Pearson correlation of approximately **0.86** in the ranked cohort. This is an association within the ranking data, not evidence of a causal relationship.
+
+![Component score correlations](assets/score-correlations.svg)
+
+![Record status and missing score patterns](assets/data-quality.svg)
+
+![Cluster evaluation and component score profiles](assets/cluster-profiles.svg)
+
+Among the tested values K=2–5, **K=2** has the highest silhouette score, approximately **0.435**. Cluster labels describe fitted score groups. They do not establish institutional mission or collaboration fit.
+
+## Run locally
+
+Python 3.10+:
+
 ```bash
 git clone https://github.com/BlessingSK1998/UniversityScope.git
 cd UniversityScope
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-jupyter lab UniversityScope.ipynb
+python visuals.py
 ```
 
-The notebook embeds the Python helpers and HTML template for portability. The matching `pipeline.py`, `dashboard.py` and `dashboard.html` are included for inspection and reuse. If you edit these files, update the corresponding notebook cells as well.
+The last command reuses a local CSV or attempts retrieval, generates the six charts and analysis summary, and creates `universityscope_dashboard.html`. Open that HTML in a browser with internet access. Alternatively run `jupyter lab UniversityScope.ipynb`.
 
-## Data and methodology
-Source: [Times Higher Education World University Rankings](https://www.timeshighereducation.com/world-university-rankings/latest/world-ranking). Validation retrieval on 16 October 2026 returned **3,146 records across 131 locations**. Current classification: **2,224 ranked, 821 reporter and 101 disabled**. The source URL uses `latest`; ranking edition is not independently verified, and future counts may change.
+## Structure
 
-- Rank and score intervals retain separate lower and upper bounds. Open-ended ranks retain an unknown upper bound.
-- Missing values remain missing. Valid zeros are retained.
-- Charts use lower score bounds, which are not exact scores when a range is reported.
-- Status classification uses source rank text/numeric bounds and the disabled flag; missing ranks remain unknown rather than automatically becoming reporters.
-- Country matching uses ISO country codes through pycountry; world geometry comes from Natural Earth via world-atlas. Small territories may be absent from the low-resolution boundary dataset.
-- Clustering excludes overall score, rank and location. It uses standardized complete component-score records and selects K by silhouette. There are no heuristic labels pretending to be fitted clusters. Stability and external validity remain untested.
-- Rankings support preliminary screening; they do not establish institutional mission, collaboration readiness or funding eligibility.
+```text
+pipeline.py           Source loading, parsing, validation and provenance
+geography.py          Shared country-name resolution
+analytics.py          Quality summary and reproducible clustering
+visuals.py            Static chart and dashboard generation
+dashboard.py          Safe payload generation and notebook embedding
+dashboard.html        Interactive dashboard template
+build_notebook.py     Portable notebook generation from source files
+assets/               Published charts, boundaries and analysis summary
+tests/                Python and JavaScript integration tests
+docs/                 Methodology, source attribution and limitations
+```
 
-No raw CSV dataset is committed. Review source access and reuse terms before acquisition or redistribution. This project is not affiliated with the publisher. External chart/map scripts and boundary downloads require network access.
+After editing source helpers, regenerate the charts and notebook:
 
-## Validation
-Parser edge cases, record preservation, boolean status handling and zero-versus-missing checks passed. Python notebook code and dashboard JavaScript syntax were checked. Live source loading and HTML generation were verified. See the notebook's executed outputs for analysis results; browser rendering remains dependent on Colab, CDN access and WebGL support.
+```bash
+python visuals.py
+python build_notebook.py --with-results
+python build_notebook.py --check
+python -m unittest discover -s tests -v
+npm ci
+npm test
+```
+
+Node is only needed for dashboard integration tests. The dashboard itself runs in the browser. A GitHub Actions workflow runs parser, geography, notebook-format and dashboard interaction checks.
+
+## Data and interpretation
+
+Source: [Times Higher Education World University Rankings](https://www.timeshighereducation.com/world-university-rankings/latest/world-ranking). The original snapshot was retrieved on 16 October 2026. Its content fingerprint is recorded in [analysis-summary.json](assets/analysis-summary.json). The ranking edition is unverified because the acquisition URL uses `latest`.
+
+The maps use Natural Earth country geometry distributed through [world-atlas](https://github.com/topojson/world-atlas). The static overview uses an equirectangular projection; the interactive 2D view uses Natural Earth projection. The ranked cohort contains 2,224 institutions, of which **2,200** are represented by the low-resolution geometry. Small territories and unresolved country names are reported rather than assigned invented locations.
+
+Rank and score bands retain bounds; missing values remain missing and valid zeros are preserved. Raw CSVs are not committed. Review publisher access and reuse terms before acquiring or redistributing data. Rankings support initial screening; partnership readiness needs additional evidence.
+
+## Validation scope
+
+Python tests cover uncertainty, missing values, invalid intervals, status classification, country aliases, date-line geometry and safe HTML embedding. JavaScript integration tests use actual D3 projection and world boundaries with chart rendering stubbed to check filters, comparisons, map clicks and library-failure states. Static charts were visually reviewed. Full browser/WebGL rendering still requires a check in Colab or a browser.

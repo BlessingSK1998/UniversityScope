@@ -1,0 +1,62 @@
+{
+  "records": 3146,
+  "locations": 131,
+  "statuses": {
+    "Ranked": 2224,
+    "Reporter": 821,
+    "Disabled": 101
+  },
+  "duplicate_name_location_rows": 0,
+  "unparsed_rank_rows": 0,
+  "open_ended_rank_rows": 292,
+  "missing_scores": {
+    "overall": 849,
+    "teaching": 849,
+    "research": 849,
+    "citations": 849,
+    "industry_income": 849,
+    "international_outlook": 849
+  },
+  "invalid_score_fields": {
+    "overall": 0,
+    "teaching": 0,
+    "research": 0,
+    "citations": 0,
+    "industry_income": 0,
+    "international_outlook": 0
+  },
+  "provenance": "Local snapshot times_higher_education_rankings.csv \u00b7 SHA256 376ff9e47d79 \u00b7 ranking edition unverified",
+  "best_k": 2,
+  "clustering_complete_cases": 2224,
+  "silhouette_scores": [
+    {
+      "k": 2,
+      "silhouette": 0.43498050534923516
+    },
+    {
+      "k": 3,
+      "silhouette": 0.3456434746019256
+    },
+    {
+      "k": 5,
+      "silhouette": 0.3032802157874221
+    },
+    {
+      "k": 4,
+      "silhouette": 0.2910449648837985
+    }
+  ],
+  "visuals": [
+    "world-coverage",
+    "country-coverage",
+    "teaching-research",
+    "score-correlations",
+    "data-quality",
+    "cluster-profiles"
+  ],
+  "unresolved_country_names": [
+    "Northern Cyprus",
+    "Kosovo"
+  ],
+  "ranked_records_in_geometry": 2200
+}

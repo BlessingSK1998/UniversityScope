@@ -7,3 +7,8 @@ next_data.json
 geocoding_cache.json
 universityscope_map.html
 index.html
+universityscope_dashboard.html
+*.metadata.json
+assets/*.png
+node_modules/
+.cache/

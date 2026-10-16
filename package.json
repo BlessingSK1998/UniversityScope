@@ -1,0 +1,7 @@
+{
+  "name": "universityscope-validation",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node --test tests/dashboard.test.mjs"},
+  "devDependencies": {"d3": "7.9.0", "jsdom": "26.1.0", "topojson-client": "3.1.0"}
+}
