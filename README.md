@@ -1,3 +1,7 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blessing-universityscope.streamlit.app/)
+
+**[Open the hosted app](https://blessing-universityscope.streamlit.app/)**
+
 # UniversityScope
 
 **Global university performance, geographic coverage and institutional comparison.**
